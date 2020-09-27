@@ -289,5 +289,45 @@ function subtract (prodItem, newCount) {
 }
 subtract('tomato', 9);
 
+//4. Задана колекція [{name: "Yura", age: 55, hobby: ["films", "games", "hiking"], type: "Admin"}, {}, {},{}]. Вивести всіх адмінів. Вивести середній вік усіх працівників. Вивести тільки унікальні хоббі працівників.
 
 
+let users = [
+    {name: "Yura", age: 55, hobby: ["films", "books", "mountains"], type: "Guest"},
+    {name: "Petro", age: 30, hobby: ["WordPress", "books", "mountains"], type: "Admin"},
+    {name: "Oleg", age: 26, hobby: ["programming", "books", "mountains"], type: "Admin"},
+    {name: "Stepan", age: 23, hobby: ["films", "games", "hiking"], type: "User"},
+    {name: "Oksana", age: 40, hobby: ["films", "games", "hiking"], type: "User"},
+    {name: "Anna", age: 28, hobby: ["films", "voleyball", "hiking"], type: "User"},
+]
+//Вивести всіх адмінів.
+adminArr = [];
+function Role () {
+    console.log('');
+    for (let i=0; i<users.length-1; i++) {
+        if (users[i].type === "Admin") {
+            adminArr.push(users[i].name);
+        }
+    }
+    console.log(adminArr);
+}
+Role();
+
+//Вивести середній вік усіх працівників. 
+let agggge = 0;
+function usersAge () {
+    for (let i=0; i<users.length-1; i++) {
+         agggge += users[i].age;
+    }
+    console.log(agggge / users.length);
+    
+}
+usersAge();
+
+
+
+
+
+
+
+//Вивести тільки унікальні хоббі працівників.
