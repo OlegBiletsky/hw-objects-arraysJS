@@ -122,20 +122,15 @@ console.log(figure);
 //3. Створимо аналог списка покупок (мінімум 5 покупок з всіма заданими пропертями. )
 /*
 let products = {
-
-  tomato: {
-        count: 5,
-        price: 50,
-        buy: false,
-        inStore: true
-    },
-
+                tomato: {
+                    count: 5,
+                    price: 50,
+                    buy: false,
+                    inStore: true
+                },
   ...
-
 }
-*/
-/*
-Виводимо список покупок - спочатку ті, які є в магазині потім яких нема.
+Виводимо список покупок - спочатку ті, які є в магазині, потім яких нема.
 Виводимо список покупок, які ми купили.
 Додаємо функцію, яка дозволить купити продукт.
 Додаємо функцію, яка просумує всі зроблені покупки і виведе результат (не забуваємо, що є значення кількості та ціни за одиницю товару).
@@ -149,7 +144,7 @@ let products = {
         count: 3,
         price: 18,
         buy: false,
-        inStore: false,
+        inStore: true,
     },
     cucumber : {
         count: 5,
@@ -184,3 +179,115 @@ let products = {
 
 
 }
+
+
+//Виводимо список покупок - спочатку ті, які є в магазині, потім яких нема.
+let inStoreConfirmArr = [];//це створювати тут чи в тілі функції??
+let notInStoreConfirmArr = [];//це створювати тут чи в тілі функції??
+function inStoreConfirm () {
+    for (let key in products) {
+        if ( products[key].inStore === true ) {
+            inStoreConfirmArr.push(key);
+        } else {
+            notInStoreConfirmArr.push(key);
+        }
+    }
+    console.log(inStoreConfirmArr, "in store");
+    console.log(notInStoreConfirmArr, "not in store");
+}
+inStoreConfirm();
+
+
+
+
+
+
+//Виводимо список покупок, які ми купили.
+let weBuyArr = [];
+function weBuy () {
+    for (let key in products) {
+        if ( products[key].buy === true && products[key].inStore === true) {
+            weBuyArr.push(key);
+        }
+    }
+    console.log(weBuyArr);
+}
+weBuy();
+
+
+
+
+
+
+//Додаємо функцію, яка дозволить купити продукт.
+function addToCart (inputWord) {
+    for (let key in products) {
+        if (key === inputWord && products[key].buy === false && products[key].inStore === true) {
+            products[key].buy = true;
+        }
+    }
+}
+function inputNewItem () {
+    return prompt('What do you want to add in your cart');
+}
+// addToCart(inputNewItem());//це КОЛЛ-БЕК??
+
+
+
+
+
+
+//Додаємо функцію, яка просумує всі зроблені покупки і виведе результат (не забуваємо, що є значення кількості та ціни за одиницю товару).
+let result = 0;
+function Result () {
+    for (let key in products) {
+        if ( products[key].inStore === true && products[key].buy === true) {
+            let cost = products[key].count * products[key].price;
+            console.log(cost)
+            result += cost;
+        }
+    }
+    return result;
+}
+console.log(Result());
+
+
+
+
+
+
+
+//Додаємо можливість збільшувати кількість товару.
+function addCount (prodItem, newCount) {
+    for (let key in products) {
+        if (key === prodItem) {
+            console.log(products[key].count);
+            products[key].count = newCount;
+            console.log(products[key].count);
+        }
+    }
+}
+addCount('tomato', 80);
+
+
+
+
+
+
+//Додаємо можливість зменшувати кількість товару(менше 0 бути не може).
+function subtract (prodItem, newCount) {
+   
+    console.log('');
+    
+    for (let key in products) {
+        if (key === prodItem) {
+            console.log(products[key].count);
+            products[key].count = newCount;
+            console.log(products[key].count);
+        }
+    }
+}
+subtract('tomato', 9);
+
+
+
