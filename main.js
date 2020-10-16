@@ -282,7 +282,7 @@ function userWantToLess () {
     let item = prompt("Write product if you want to add some less:", "butter");
     do {
         count = +prompt("How much?", 2);
-    }  while (count === 0 || count < 0);
+    }  while ( count < 0 );
 
     return [item, count];
 }
@@ -316,14 +316,15 @@ subtractCount(userWantToLess());
 Вивести середній вік усіх працівників. 
 Вивести тільки унікальні хоббі працівників.
 */
+console.log('***task 4***');
 
 let users = [
-    {name: "Yura", age: 55, hobby: ["films", "books", "mountains"], type: "Guest"},
-    {name: "Petro", age: 30, hobby: ["WordPress", "books", "mountains"], type: "Admin"},
-    {name: "Oleg", age: 26, hobby: ["programming", "books", "mountains"], type: "Admin"},
-    {name: "Stepan", age: 23, hobby: ["films", "games", "hiking"], type: "User"},
-    {name: "Oksana", age: 40, hobby: ["films", "games", "hiking"], type: "User"},
-    {name: "Anna", age: 28, hobby: ["films", "voleyball", "hiking"], type: "User"},
+    {name: "Yura", age: 55, hobby: ["hiking", "books", "mountains"], type: "Guest"},
+    {name: "Petro", age: 30, hobby: ["WordPress", "books", "videos"], type: "Admin"},
+    {name: "Oleg", age: 26, hobby: ["programming", "books", "hiking"], type: "Admin"},
+    {name: "Stepan", age: 23, hobby: ["singing", "travelling", "eating"], type: "User"},
+    {name: "Oksana", age: 40, hobby: ["travelling", "mountains", "hiking"], type: "User"},
+    {name: "Anna", age: 28, hobby: ["videos", "voleyball", "hiking"], type: "User"},
 ]
 //Вивести всіх адмінів.
 adminArr = [];
@@ -334,41 +335,35 @@ function Role () {
             adminArr.push(users[i].name);
         }
     }
-    console.log(adminArr);
+    console.log(adminArr,  'Вивести всіх адмінів');
 }
 Role();
 
 //Вивести середній вік усіх працівників. 
 let agggge = 0;
+let serAge;
 function usersAge () {
     for (let i=0; i<users.length-1; i++) {
          agggge += users[i].age;
     }
-    console.log(agggge / users.length);
-    
+    serAge = agggge / users.length;
+    console.log(serAge, 'Вивести середній вік усіх працівників');
 }
 usersAge();
 
 
-
-
-
-
-//Вивести тільки унікальні хоббі працівників.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-*/
+//Вивести тільки унікальні хоббі працівників.//WordPress,programming,singing,eating,voleyball//
+let allHobby = [];
+let uniqueHobbyObj ={};
+let uniqueHobbyArr = [];
+function UniqueHobby () {
+    for (let item of users) {
+        allHobby = allHobby.concat(item.hobby)
+    }
+    console.log(allHobby);
+    let uniqueHobbyObj = new Set(allHobby);
+    console.log(uniqueHobbyObj);
+    uniqueHobbyArr = [...uniqueHobbyObj];
+    console.log(uniqueHobbyArr, "my");
+}
+UniqueHobby();
