@@ -28,7 +28,7 @@ let animal = {
         console.log( ` ${MARAFON_WAY} км. за ${Math.ceil(resultTime)} дн. ` );
     },
     improveMyName : function () {
-        newName = prompt('Write new name for animal:');
+        newName = prompt('Write new name for animal:', 'kangaroo');
         this.animalName = newName;
         console.log(` My new name: ${this.animalName} `);
     },//жовта підсвітка означає що метод змінює сам обєкт
@@ -133,6 +133,7 @@ let products = {
 Додаємо можливість збільшувати кількість товару.
 Додаємо можливість зменшувати кількість товару(менше 0 бути не може).
 */
+console.log('***task 3***');
 
 let products = {
 
@@ -173,26 +174,24 @@ let products = {
         inStore: true,
     },
 
-
 }
 
-/*
+
 //Виводимо список покупок - спочатку ті, які є в магазині, потім яких нема.
-let inStoreConfirmArr = [];//це створювати тут чи в тілі функції??
-let notInStoreConfirmArr = [];//це створювати тут чи в тілі функції??
+let inStoreArr = [];//це створювати тут чи в тілі функції??
+let notInStoreArr = [];//це створювати тут чи в тілі функції??
 function inStoreConfirm () {
     for (let key in products) {
         if ( products[key].inStore === true ) {
-            inStoreConfirmArr.push(key);
+            inStoreArr.push(key);
         } else {
-            notInStoreConfirmArr.push(key);
+            notInStoreArr.push(key);
         }
     }
-    console.log(inStoreConfirmArr, "in store");
-    console.log(notInStoreConfirmArr, "not in store");
+    console.log(inStoreArr, "in store");
+    console.log(notInStoreArr, "not in store");
 }
 inStoreConfirm();
-
 
 
 
@@ -206,13 +205,12 @@ function weBuy () {
             weBuyArr.push(key);
         }
     }
-    console.log(weBuyArr);
+    console.log(weBuyArr, 'we buy!');
 }
 weBuy();
 
 
 
-*/
 
 
 //Додаємо функцію, яка дозволить купити продукт.
@@ -224,14 +222,14 @@ function addToCart (inputWord) {
     }
 }
 function inputNewItem () {
-    return prompt('What do you want to add in your cart');
+    return prompt('What do you want to add in your cart', 'cucumber');
 }
 addToCart(inputNewItem());//це КОЛЛ-БЕК??
 
 console.log(products);
 
 
-/*
+
 
 
 //Додаємо функцію, яка просумує всі зроблені покупки і виведе результат (не забуваємо, що є значення кількості та ціни за одиницю товару).
@@ -240,13 +238,12 @@ function Result () {
     for (let key in products) {
         if ( products[key].inStore === true && products[key].buy === true) {
             let cost = products[key].count * products[key].price;
-            console.log(cost)
             result += cost;
         }
     }
     return result;
 }
-console.log(Result());
+console.log(Result(), 'грн');
 
 
 
@@ -255,16 +252,23 @@ console.log(Result());
 
 
 //Додаємо можливість збільшувати кількість товару.
-function addCount (prodItem, newCount) {
+function userWantToChange () {
+    let item = prompt("Write product if you want to add some more:", "tomato");
+    let count = +prompt("How much?", 80);
+    console.log(item, count);
+    return [item, count];//ми не можемо ретурнути 2 значення, але можемо масив з цих значень!//!
+}
+
+function addCount (parameter) {
     for (let key in products) {
-        if (key === prodItem) {
-            console.log(products[key].count);
-            products[key].count = newCount;
-            console.log(products[key].count);
+        if (key === parameter[0]) {
+
+            products[key].count = parameter[1];
+
         }
     }
 }
-addCount('tomato', 80);
+addCount(userWantToChange());
 
 
 
@@ -272,19 +276,29 @@ addCount('tomato', 80);
 
 
 //Додаємо можливість зменшувати кількість товару(менше 0 бути не може).
-function subtract (prodItem, newCount) {
-   
-    console.log('');
-    
+
+function userWantToLess () {
+    let count;
+    let item = prompt("Write product if you want to add some less:", "butter");
+    do {
+        count = +prompt("How much?", 2);
+    }  while (count === 0 || count < 0);
+
+    return [item, count];
+}
+
+// userWantToLess();
+
+function subtractCount (parameter) {
     for (let key in products) {
-        if (key === prodItem) {
-            console.log(products[key].count);
-            products[key].count = newCount;
-            console.log(products[key].count);
+        if (key === parameter[0]) {
+
+            products[key].count = parameter[1];
+
         }
     }
 }
-subtract('tomato', 9);
+subtractCount(userWantToLess());
 
 
 
@@ -295,9 +309,14 @@ subtract('tomato', 9);
 
 
 
-//4. Задана колекція [{name: "Yura", age: 55, hobby: ["films", "games", "hiking"], type: "Admin"}, {}, {},{}]. Вивести всіх адмінів. Вивести середній вік усіх працівників. Вивести тільки унікальні хоббі працівників.
 
+//4. Задана колекція [{name: "Yura", age: 55, hobby: ["films", "games", "hiking"], type: "Admin"}, {}, {},{}].
 /*
+Вивести всіх адмінів. 
+Вивести середній вік усіх працівників. 
+Вивести тільки унікальні хоббі працівників.
+*/
+
 let users = [
     {name: "Yura", age: 55, hobby: ["films", "books", "mountains"], type: "Guest"},
     {name: "Petro", age: 30, hobby: ["WordPress", "books", "mountains"], type: "Admin"},
