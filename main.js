@@ -4,7 +4,8 @@
 Функція яка виведе за скільки тварина зможе подолати 1000 км. (врахуйте що тварина може рухатись не більше 12 годин у день). 
 Функція яка зможе змінити назву тварини на більш детальну. 
 */
-/*
+console.log('***task 1***');
+
 const MARAFON_WAY = 1000;
 const DAY_LIMIT = 12;
 
@@ -14,7 +15,7 @@ let animal = {
     animalAge : 10,
     animalSpeed : 20,
     aboutMe : function () {
-        console.log(this.animalName, "name"); //чому це виводить не так як інші проперті?????
+        console.log(this.animalName, "name"); //чому "name" виводить без лапок?????
         console.log(this.animalWeight, "weight");
         console.log(this.animalAge, "age");
         console.log(this.animalSpeed, "speed");
@@ -23,23 +24,20 @@ let animal = {
         let time = MARAFON_WAY / this.animalSpeed;
         let resultTime = time / DAY_LIMIT;
         console.log( ` ${MARAFON_WAY} км. за ${time} год. ` );
+        console.log('або');
         console.log( ` ${MARAFON_WAY} км. за ${Math.ceil(resultTime)} дн. ` );
-        
     },
     improveMyName : function () {
-        newName = prompt('Write new name:');
-        console.log(newName);
+        newName = prompt('Write new name for animal:');
         this.animalName = newName;
         console.log(` My new name: ${this.animalName} `);
-    },
-    
+    },//жовта підсвітка означає що метод змінює сам обєкт
 }
 
 
 animal.aboutMe();
 animal.marafon1000();
 animal.improveMyName();
-animal.aboutMe();
 
 
 
@@ -52,44 +50,44 @@ animal.aboutMe();
 
 
 
+/*2. Створіть обєкт який має у собі 2 довжини сторін фігури. 
+Додайте методи які будуть робити наступне:
+рахувати площу фігури, 
+периметр фігури, 
+зроблять фігуру 3-д, 
+зададуть назву фігури, 
+переведуть значення з сантиметрів у метри.
+*/
+console.log('***task 2***');
 
-
-//2. Створіть обєкт який має у собі 2 довжини сторін фігури. Додайте методи які будуть робити наступне - рахувати площу фігури, периметр фігури, зроблять фігуру 3-д, зададуть назву фігури, переведуть значення з сантиметрів у метри.
-let koef = 0.01; 
+let koef = 0.01;
 let figure = {
     figureLength : 65,
     figureWidth : 40,
     figureSquare : function () {
         let area = this.figureLength * this.figureWidth;
-        console.log(area);
+        console.log(area, "square");
     },
     figurePerimeter : function () {
         let perimeter = (this.figureLength + this.figureWidth) * 2;
-        console.log(perimeter);
+        console.log(perimeter, "perimeter");
     },
     updateTo3D : function () {
-        this.figureHeight = 30;
+        let newValue = +prompt("Input 3 value:", 30);
+        this.figureHeight = newValue;
     },
     figureName : function () {
-        this.figureName = 'rectangle';
+        let figure_name = prompt("Write name for figure:", "rectangle");
+        this.figureName = figure_name;
     },
     conversion : function () {
         for (let key in this) {
-            // console.log(key);
-            // console.log(typeof key);
-            // console.log(figure[key]);
-            // console.log(typeof figure[key]);
-
-            // console.log('');
-            // console.log('');
-            // console.log('');
 
             if ( typeof this[key] === "number" ) {
-                console.log(this[key]);
+                console.log(this[key], 'cм');
                 this[key] = this[key] * koef;
-                console.log(this[key]);
-                console.log('');
-                
+                console.log(this[key], 'м');
+
             }
         }
     }
@@ -99,10 +97,8 @@ console.log(figure);
 figure.figureSquare();
 figure.figurePerimeter();
 figure.updateTo3D();
-console.log(figure);
 figure.figureName();
 figure.conversion();
-
 console.log(figure);
 
 
@@ -117,9 +113,7 @@ console.log(figure);
 
 
 
-
-*/
-//3. Створимо аналог списка покупок (мінімум 5 покупок з всіма заданими пропертями. )
+//3. Створимо аналог списка покупок (мінімум 5 покупок з всіма заданими пропертями.)
 /*
 let products = {
                 tomato: {
@@ -130,6 +124,8 @@ let products = {
                 },
   ...
 }
+*/
+/*
 Виводимо список покупок - спочатку ті, які є в магазині, потім яких нема.
 Виводимо список покупок, які ми купили.
 Додаємо функцію, яка дозволить купити продукт.
@@ -180,7 +176,7 @@ let products = {
 
 }
 
-
+/*
 //Виводимо список покупок - спочатку ті, які є в магазині, потім яких нема.
 let inStoreConfirmArr = [];//це створювати тут чи в тілі функції??
 let notInStoreConfirmArr = [];//це створювати тут чи в тілі функції??
@@ -216,7 +212,7 @@ weBuy();
 
 
 
-
+*/
 
 
 //Додаємо функцію, яка дозволить купити продукт.
@@ -230,11 +226,12 @@ function addToCart (inputWord) {
 function inputNewItem () {
     return prompt('What do you want to add in your cart');
 }
-// addToCart(inputNewItem());//це КОЛЛ-БЕК??
+addToCart(inputNewItem());//це КОЛЛ-БЕК??
+
+console.log(products);
 
 
-
-
+/*
 
 
 //Додаємо функцію, яка просумує всі зроблені покупки і виведе результат (не забуваємо, що є значення кількості та ціни за одиницю товару).
@@ -289,9 +286,18 @@ function subtract (prodItem, newCount) {
 }
 subtract('tomato', 9);
 
+
+
+
+
+
+
+
+
+
 //4. Задана колекція [{name: "Yura", age: 55, hobby: ["films", "games", "hiking"], type: "Admin"}, {}, {},{}]. Вивести всіх адмінів. Вивести середній вік усіх працівників. Вивести тільки унікальні хоббі працівників.
 
-
+/*
 let users = [
     {name: "Yura", age: 55, hobby: ["films", "books", "mountains"], type: "Guest"},
     {name: "Petro", age: 30, hobby: ["WordPress", "books", "mountains"], type: "Admin"},
@@ -329,5 +335,21 @@ usersAge();
 
 
 
-
 //Вивести тільки унікальні хоббі працівників.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*/
